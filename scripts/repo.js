@@ -19,15 +19,12 @@
 
   //then replace this call with a $.get() call.
   repos.requestRepos =function(callback){
-   $.ajax({
-     url: '/github/users/ishidas/repos' +
-          '?per_page=100' + '&sort=updated',
-     type: 'GET',
-     success: function(data,message,xhr){
-       repos.all = data;
-    }
-  }).done(callback);
-  };
+   $.get('/github/users/ishidas/repos?per_page=100&sort=updated',function(data,message,xhr){
+     repos.all = data;
+     console.log(repos.all);
+    })
+    .done(callback);
+    };
 
   repos.with = function(attr) {
     return repos.all.filter(function(repo) {
